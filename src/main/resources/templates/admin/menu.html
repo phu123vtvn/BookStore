@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="admin/header :: library">
+		<meta charset="UTF-8"/>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<div th:fragment="menu" class="col-md-2 bg-light " style="height: auto;">
+			<ul class="list-unstyled ">
+				<li class="border-bottom py-2">
+					<div class="input-group ">
+						<input type="text" class="form-control" placeholder="Search..."/>
+						<div class="input-group-append">
+							<button class="btn bg-white border" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</li>
+				<li class="py-2 border-bottom"><a href="/admin/product/list"><i class="fal fa-table"></i> List Product</a></li>
+				<li class="py-2 border-bottom"><a href="/admin/product/add"><i class="far fa-edit"></i> Add New Product</a></li>
+				<li class="py-2 border-bottom"><a href="/admin/user/list"><i class="fal fa-table"></i> List User</a></li>
+				<li class="py-2 border-bottom"><a href="/admin/category/list"><i class="fal fa-table"></i> List Category</a></li>
+				<li class="py-2 border-bottom"><a href="/admin/category/add"><i class="far fa-edit"></i> Add New Category</a></li>
+				<li class="py-2 border-bottom"><a href="/admin/order/list"><i class="fal fa-table"></i> List Order</a></li>
+			</ul>
+		</div>
+	</body>
+</html>

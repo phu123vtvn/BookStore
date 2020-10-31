@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8"/>
+		<!-- <meta name="viewport" content="width=device-width" /> -->
+		<link rel="stylesheet" th:href="@{/admin/css/bootstrap.min.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/admin/css/style.css}" type="text/css"/>
+		<script th:src="@{/admin/js/jquery-3.4.1.min.js}"></script>
+		<title>login</title>
+	</head>
+	<body>
+		<section class="container pt-5 mt-5">
+			<div class="row justify-content-center">
+				<div class="col-md-5">
+					<div class="card">
+						<div class="card-header"><p class="card-title m-0">Please Sign In</p></div>
+						<div class="card-body">
+							<p th:if="${param.error}" class="error">
+								<div class="alert alert-danger">	
+									Username or password incorrect
+								</div>
+							</p>
+							<p th:if="${param.logout}" class="error">
+								<div class="alert alert-success">	
+									logout success
+								</div>
+							</p>
+								 <!-- j_spring_security_check -->
+							<form th:action="@{/j_spring_security_check}" id="form-login" th:method="POST">
+								<div>
+									<input type="text" name="j_username" id="e-mail" class="form-control " placeholder="E-mail"/>
+									<span class="text-danger" id="checkuser"></span>
+								</div>
+								<div class="pt-3">
+									<input type="password"  name="j_password" id="password" class="form-control" placeholder="Password"/>
+									<span class="text-danger" id="checkpass"></span>
+								</div>
+								<div class="pt-3">
+									<input type="checkbox" name="checkbox" id="checkbox"/>
+									<label for="coding" class="card-text text-dark m-0">Remenber Me</label>
+								</div>
+								<div class="pt-2">
+									<button type="submit" class="btn btn-success w-100" >Login</button>
+								</div>
+								<div class="pt-4"><a th:href="@{/register}" class="m-0 "> Click here to Register</a></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script th:src="@{/web/js/jquery.validate.min.js}" ></script>
+		<script th:src="@{/admin/js/main.js}" ></script>
+		<script th:src="@{/admin/js/bootstrap.min.js}" ></script>
+		<script th:src="@{/admin/js/popper.min.js}" ></script>
+	</body>
+</html>

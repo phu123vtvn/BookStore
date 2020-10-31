@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="web/header :: library">
+		<meta charset="UTF-8"/>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<!-- Categories Section Begin -->
+		<section th:fragment="slider" class="categories">
+			<div class="container">
+				<div class="row">
+					<div class="categories__slider owl-carousel" >
+						<div class="col-lg-3" th:each="category, item:${categories}">
+							<div class="categories__item set-bg" data-setbg="/img/loixinloi.jpg">
+								<h5><a th:href="@{/all-product/{id}(id=${category.id})}" th:text="${category.name}"></a></h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Categories Section End -->
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="web/header :: library">
+		<meta charset="UTF-8"/>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<header th:replace="web/header :: header"></header>
+		<section th:replace="web/menu :: menu"></section>
+		<section th:replace="web/slider :: slider"></section>
+		<!-- Shoping Cart Section Begin -->
+		<section class="shoping-cart spad">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="shoping__cart__table">
+							<table>
+								<thead>
+									<tr>
+										<th class="shoping__product">Products</th>
+										<th>Price</th>
+										<th>Quantity</th>
+										<th>Total</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody >
+									<tr th:each="detail, item:${session.myCartItems}">
+										<td class="shoping__cart__item">
+											<img th:src="@{/img/{image}(image=${detail.value.productEntity.imgae})}" width="100" height="110" />
+											<h8 th:text="${detail.value.productEntity.name}"></h8>
+										</td>
+										<td class="shoping__cart__price" th:inline="text">[[${#numbers.formatInteger(detail.value.productEntity.price,0,'COMMA')}]]</td>
+										<td class="shoping__cart__quantity">
+											<div class="quantity">
+												<div class="pro-qty">
+													<input type="text" th:value="${detail.value.quantity}"/>
+												</div>
+											</div>
+										</td>
+										<td class="shoping__cart__total" th:inline="text">[[${#numbers.formatInteger(detail.value.amount,0,'COMMA')}]]</td>
+										<td class="shoping__cart__item__close">
+											<a th:href="@{/shoping-cart/remove/{productId}(productId=${detail.value.productEntity.id})}"><span class="icon_close" ></span></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="shoping__cart__btns">
+							<a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+							<a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+						Upadate Cart</a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="shoping__continue">
+						<div class="shoping__discount">
+							<h5>Discount Codes</h5>
+							<form action="#">
+								<input type="text" placeholder="Enter your coupon code"/>
+								<button type="submit" class="site-btn">APPLY COUPON</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="shoping__checkout">
+						<h5>Cart Total</h5>
+						<ul>
+							<li>Total <span th:inline="text">[[${#numbers.formatInteger(session.myCartTotal,0,'COMMA')}]]</span></li>
+						</ul>
+						<a th:href="@{/checkout}" class="primary-btn">PROCEED TO CHECKOUT</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Shoping Cart Section End -->
+	<footer th:replace="web/footer :: footer"></footer>
+</body>
+</html>

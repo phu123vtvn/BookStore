@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8"/>
+		<!-- <meta name="viewport" content="width=device-width" /> -->
+		<link rel="stylesheet" th:href="@{/admin/css/bootstrap.min.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/admin/css/style.css}" type="text/css"/>
+		<script th:src="@{/admin/js/jquery-3.4.1.min.js}"></script>
+		<title>register</title>
+	</head>
+	<body>
+		<section class="container pt-5 mt-5">
+			<div class="row justify-content-center">
+				<div class="col-md-5">
+					<div class="card">
+						<div class="card-header"><p class="card-title m-0">Register</p></div>
+						<div class="card-body">
+							<p th:if="${success}" class="success">
+								<div class="alert alert-success">
+									<span th:text="${success}"></span>
+								</div>
+							</p>
+							<p th:if="${error}" class="error">
+								<div class="alert alert-danger">
+									<span th:text="${error}"></span>
+								</div>
+							</p>
+							<form th:action="@{/register}" th:object="${user}" id="formSubmit" th:method="POST">
+								<div>
+									<input type="email" id="email" name="email" class="form-control" th:field="*{email}" placeholder="E-mail"/>
+									<span class="text-danger" id="checkemal"></span>
+								</div>
+								<div class="pt-3">
+									<input type="text" id="phone" name="phone" class="form-control " th:field="*{phone}" placeholder="Phone Number"/>
+									<span class="text-danger" id="checkuser"></span>
+								</div>
+								<div class="pt-3">
+									<input type="password" id="password" name="password" class="form-control" th:field="*{password}" placeholder="Password"/>
+									<span class="text-danger" id="checkpass"></span>
+								</div>
+								<div class="pt-3">
+									<input type="password" id="repassword" name="repassword" class="form-control" placeholder="Re-Password"/>
+									<span class="text-danger" id="checkrepass"></span>
+								</div>
+								<div class="pt-3">
+									<button type="submit" class="btn btn-success w-100" id="btnRegister">Register</button>
+								</div>
+								<div class="pt-4"><a th:href="@{/login}" class="m-0 "> Click to Login</a></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script th:src="@{/web/js/jquery.validate.min.js}" ></script>
+		<script th:src="@{/admin/js/main.js}" ></script>
+		<script th:src="@{/admin/js/bootstrap.min.js}" ></script>
+		<script th:src="@{/admin/js/popper.min.js}" ></script>
+		<script>
+			$("#formSubmit").validate({
+				rules: {
+			"phone": {
+				required: true,
+				maxlength: 10,
+				minlength: 10
+			},
+			"email": {
+				required: true,
+				maxlength: 50,
+			},
+			"password": {
+				required: true,
+				minlength: 6
+			},
+			"repassword": {
+				equalTo: "#password",
+				minlength: 6
+				
+			}
+		},
+		messages: {
+			"username": {
+				required: "Bắt buộc nhập số điện thoại",
+				maxlength: "số điện thoại tối đa 10 ký tự",
+				minlength: "Số điện thoại tối thiểu 10 ký tự"
+			},
+			"email": {
+				required: "Bắt buộc nhập email",
+				maxlength: "Hãy nhập tối đa 30 ký tự"
+			},
+			"password": {
+				required: "Bắt buộc nhập password",
+				minlength: "Hãy nhập ít nhất 6 ký tự"
+			},
+			"repassword": {
+				equalTo: "Hai password phải giống nhau"
+			}
+		}
+			})
+		</script>
+	</body>
+</html>

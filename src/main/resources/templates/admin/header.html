@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:fragment="library">
+		<meta charset="UTF-8"/>
+		<title>Insert title here</title>
+		<link rel="stylesheet" th:href="@{/admin/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/admin/css/style.css}" />
+		<link rel="stylesheet" th:href="@{/admin/css/all.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/datatables/css/jquery.dataTables.min.css}"/>
+		
+		<script th:src="@{/admin/js/jquery-3.4.1.min.js}"></script>
+		<script th:src="@{/admin/js/popper.min.js}"></script>
+		<script th:src="@{/admin/js/bootstrap.min.js}"></script>
+	</head>
+	<body>
+		<section th:fragment="header" class="container-fluid">
+			<div class="row">
+				<!-- Image and text -->
+				<nav class="navbar navbar-light py-0 bg-light w-100 border-bottom">
+					<a class="navbar-brand" style="font-size: 16px;" href="#">CMS</a>
+					<ul class="list-unstyled m-0">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-user"></i>
+							</a>
+							<div class="dropdown-menu" style="position: absolute;top: 40px;left: -90px;" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item border-bottom" th:href="@{/admin/user/{id}/edit(id=${userDetails.id})}"><i class="fas fa-user"></i> User Profile</a>
+								<a class="dropdown-item" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</section>
+		
+	</body>
+</html>

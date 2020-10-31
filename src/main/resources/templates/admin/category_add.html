@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="admin/header :: library">
+		<meta charset="UTF-8"/>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<section>
+			<div class="main-content container-fluid">
+				<div class="row">
+				<section th:replace="admin/header :: header"></section>
+				<!-- menu -->
+				<div th:replace="admin/menu :: menu"></div>
+				<!-- menu -->
+				
+				<div class="col-md-10 ">
+					<div class="p-4">
+						<h1 class="border-bottom py-3">Edit Category</h1>
+						<div class="card">
+							<div class="card-header"> <p class="m-0">Category Form Element</p></div>
+							<div class="card-body">
+								<form th:action="@{/admin/category/save}" method="POST" th:object="${category}" class="form-horizontal">
+									<div class="w-75">
+										<label class="font-weight-bold">Full Name</label>
+										<input type="text" name="firstName" class="form-control" th:field="*{name}" placeholder="Enter the first name"/>
+									</div>
+									<div class="pt-3">
+										<a th:if="${category.id}">
+											<button type="submit" class="btn btn-success border"
+											id="btnAddOrUpdate">Update Button</button>
+										</a>
+										<a th:unless="${category.id}">
+											<button type="submit" class="btn btn-success border" id="btnAddOrUpdate">Add Button</button>
+										</a>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

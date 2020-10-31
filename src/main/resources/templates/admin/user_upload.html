@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="admin/header :: library">
+		<meta charset="UTF-8"/>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<section>
+			<div class="main-content container-fluid">
+				<div class="row">
+				<section th:replace="admin/header :: header"></section>
+				<!-- menu -->
+				<div th:replace="admin/menu :: menu"></div>
+				<!-- menu -->
+				
+				<div class="col-md-10 ">
+					<div class="p-4">
+						<h1 class="border-bottom py-3">Edit Profile</h1>
+						<div class="card">
+							<c:if test="${param.message eq 'update_success'}">
+							<div class="alert alert-success">Update Success</div>
+							</c:if>
+							<c:if test="${param.message eq 'error_system'}">
+							<div class="alert alert-danger">Update fail</div>
+							</c:if>
+							<div class="card-header"> <p class="m-0">Profile Form Element</p></div>
+							<div class="card-body">
+								<form th:action="@{/admin/user/save}" method="POST" enctype="multipart/form-data" th:object="${user}" class="form-horizontal" id="formSubmit">
+									<div class="w-75">
+										<label class="font-weight-bold">Full Name</label>
+										<input type="text" name="firstName" class="form-control" th:field="*{fullname}" placeholder="Enter the first name"/>
+									</div>
+									<div class="w-75 pt-3">
+										<label class="font-weight-bold">Email</label><br/>
+										<a th:text="*{email}" ></a>
+									</div>
+									<div class="w-75 pt-3">
+										<label class="font-weight-bold">Phone</label>
+										<input type="text" name="phone" class="form-control" th:field="*{phone}" placeholder="Enter the phone number"/>
+									</div>
+									<div th:if="${user.img} != null" class="w-75 pt-3">
+										<label  class="font-weight-bold">Ảnh Cá Nhân</label> <br/>
+										<img th:src="@{/img/{image}(image=${user.img})}" class="img-fluid"/>
+									</div>
+									<div class="w-75 pt-3">
+										<label  class="font-weight-bold">Ảnh đại diện <span class="required">*</span></label>
+										<input type="file" name="image" />
+									</div>
+									<div class="pt-3">
+										<button type="submit" class="btn btn-success border" id="btnUpdate" ><i class="fa fa-upload"></i>Upload</button>
+										<button type="reset" class="btn btn-success border">Reset</button>
+									</div>
+									<input type="hidden" th:field="*{email}" value="${user.email}" Class="form-control"/>
+									<input type="hidden" th:field="*{img}" value="${user.img}" Class="form-control"/>
+									<input type="hidden" th:field="*{id}" value="${user.id}" Class="form-control"/>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

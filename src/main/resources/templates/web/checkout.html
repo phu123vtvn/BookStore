@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Insert title here</title>
+		<!-- Css Styles -->
+		<link rel="stylesheet" th:href="@{/web/css/bootstrap.min.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/web/css/font-awesome.min.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/web/css/elegant-icons.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/web/css/nice-select.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/web/css/jquery-ui.min.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/web/css/owl.carousel.min.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/web/css/slicknav.min.css}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{/web/css/style.css}" type="text/css"/>
+		
+	</head>
+	<body>
+	<header th:replace="web/header :: header"></header>
+<section th:replace="web/menu :: menu"></section>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="img/92798573_1150426775349484_3750587789029146624_o.jpg">
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<div class="breadcrumb__text">
+				<h2>Checkout</h2>
+				<div class="breadcrumb__option">
+					<a href="./index.html">Home</a>
+					<span>Checkout</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
+			</h6>
+		</div>
+	</div>
+	<div class="checkout__form">
+		<h4>Billing Details</h4>
+		<form th:action="@{/order}" method="POST">
+			<div class="row">
+				<div class="col-lg-8 col-md-6" th:object="${checkout}">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="checkout__input">
+								<p>Full Name<span>*</span></p>
+								<input th:field="*{delivery_name}" type="text"/>
+							</div>
+						</div>
+					</div>
+					<div class="checkout__input">
+						<p>Address<span>*</span></p>
+						<input th:field="*{delivery_address}" type="text" placeholder="Street Address" class="checkout__input__add"/>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="checkout__input">
+								<p>Phone<span>*</span></p>
+								<input th:field="*{delivery_phone}" type="text"/>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="checkout__input">
+								<p>Email<span>*</span></p>
+								<input th:field="*{delivery_email}" type="text"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="checkout__order">
+						<h4>Your Order</h4>
+						<div class="checkout__order__products">Products <span>Total</span></div>
+						<ul th:each="detail, item:${session.myCartItems}">
+							<li th:text="${detail.value.productEntity.name}"> <span th:text="${detail.value.amount}"> VNĐ</span></li>
+						</ul>
+						<div class="checkout__order__total">Total <span th:inline="text">[[${#numbers.formatInteger(session.myCartTotal,3,'COMMA')}]] VNĐ</span></div>
+						<button type="submit" class="site-btn">PLACE ORDER</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</section>
+<!-- Checkout Section End -->
+<footer th:replace="web/footer :: footer"></footer>
+<!-- Js Plugins -->
+		<script th:src="@{/web/js/jquery-3.3.1.min.js}"></script>
+		<script th:src="@{/web/js/bootstrap.min.js}"></script>
+		<script th:src="@{/web/js/jquery.nice-select.min.js}"></script>
+		<script th:src="@{/web/js/jquery-ui.min.js}"></script>
+		<script th:src="@{/web/js/jquery.slicknav.js}"></script>
+		<script th:src="@{/web/js/mixitup.min.js}"></script>
+		<script th:src="@{/web/js/owl.carousel.min.js}"></script>
+		<script th:src="@{/web/js/main.js}"></script>
+</body>
+</html>
